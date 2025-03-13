@@ -1,0 +1,13 @@
+services:
+  app:
+    entrypoint: ./docker-entrypoint.sh
+    image: node:22.13.1-bullseye-slim
+    command: nx run app:serve
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    environment:
+      PATH: /usr/src/app/node_modules/.bin:$PATH
+#      NX_ISOLATE_PLUGINS: false # enable this to fix the issue with hanging container on restart
+    ports:
+      - '4242:4242'
